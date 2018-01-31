@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+import {HttpService} from '../http.service';
+import { Observable } from "rxjs/Rx";
+
+@Component({
+  selector: 'app-chicago',
+  templateUrl: './chicago.component.html',
+  styleUrls: ['./chicago.component.css']
+})
+export class ChicagoComponent implements OnInit {
+
+  temp;
+  maxTemp;
+  minTemp;
+  humidity;
+  wind;
+  clouds;
+
+  constructor(private _httpService:HttpService){}
+
+  ngOnInit() {
+    this.getWeather()
+  }
+  getWeather(){
+    let obs = this._httpService.getAPI('chicago')
+    obs.subscribe( data => {
+      console.log("washington", data)
+      this.humidity = data['main'].humidity;
+      this.temp = data['main'].temp;
+      this.temp = Math.floor(this.temp * (9 / 5) - 459.67);
+      this.maxTemp = data['main'].temp_max;
+      this.maxTemp = Math.floor(this.maxTemp * (9 / 5) - 459.67);
+      this.minTemp = data['main'].temp_min;
+      this.minTemp = Math.floor(this.minTemp * (9 / 5) - 459.67);
+      this.clouds = data['weather'][0].description;
+
+    }
+  )
+  }
+
+}

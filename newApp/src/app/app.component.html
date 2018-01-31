@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+        
+        li {
+          display: inline;
+        }
+    </style>
+</head>
+<body>
+  <div class="all">
+    <h1>Weather Forecast</h1>
+    <div class="topnav" id="myTopnav">
+      <a [routerLink]="['burbank']">Burbank</a>
+      <a [routerLink]="['chicago']">Chicago</a>
+      <a [routerLink]="['dallas']">Dallas</a>
+      <a [routerLink]="['san']">San Jose</a>
+      <a [routerLink]="['seattle']">Seattle</a>
+      <a [routerLink]="['washington']">Washington</a>
+    </div>
+    <div class="border">
+    <router-outlet></router-outlet>
+    </div>
+  </div>
+</body>
+</html>
